@@ -37,6 +37,20 @@ To run the application, execute the following command:
 python src/app.py
 ```
 
+## Testing
+
+This project includes comprehensive unit tests for all core functionality. To run the tests:
+
+```bash
+# Run all tests
+python run_tests.py
+
+# Or using unittest directly
+python -m unittest tests.test_pokedex -v
+```
+
+For detailed testing information, see [TESTING.md](TESTING.md).
+
 ## Packaging
 
 To package the application as a standalone executable, you can use tools like `PyInstaller`. 
