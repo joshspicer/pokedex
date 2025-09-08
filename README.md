@@ -37,6 +37,38 @@ To run the application, execute the following command:
 python src/app.py
 ```
 
+## Testing
+
+This project includes a comprehensive test suite built with pytest. To run the tests:
+
+1. Install test dependencies:
+   ```bash
+   pip install -r src/requirements.txt
+   ```
+
+2. Run all tests:
+   ```bash
+   pytest
+   ```
+
+3. Run tests with verbose output:
+   ```bash
+   pytest -v
+   ```
+
+4. Run tests with coverage (optional):
+   ```bash
+   pip install pytest-cov
+   pytest --cov=src
+   ```
+
+The test suite includes:
+- Unit tests for core Pokemon data fetching functionality
+- Tests for image downloading and processing
+- GUI interaction tests using virtual display (xvfb)
+- Error handling and edge case tests
+- Mock tests for external API dependencies
+
 ## Packaging
 
 To package the application as a standalone executable, you can use tools like `PyInstaller`. 
