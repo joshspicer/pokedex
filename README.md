@@ -37,6 +37,35 @@ To run the application, execute the following command:
 python src/app.py
 ```
 
+## Testing
+
+The application includes a comprehensive unit test suite that covers core functionality:
+
+### Running Tests
+
+```bash
+# Run all tests using the test runner
+python run_tests.py
+
+# Or run tests directly with unittest
+python -m unittest test_pokedex -v
+
+# Run specific test classes
+python -m unittest test_pokedex.TestPokedexCore -v
+```
+
+### Test Coverage
+
+The test suite includes:
+- **Core API functionality**: Pokemon data retrieval from PokeAPI
+- **Input validation**: Pokemon number validation and error handling
+- **Navigation logic**: Previous/next navigation with boundary conditions
+- **Image processing**: Image downloading and format handling
+- **Name formatting**: Pokemon name copying functionality
+- **Error handling**: Network failures and invalid data scenarios
+
+All tests use mocking for external dependencies (API calls, file operations) to ensure reliable and fast test execution.
+
 ## Packaging
 
 To package the application as a standalone executable, you can use tools like `PyInstaller`. 
