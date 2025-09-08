@@ -1,0 +1,14 @@
+# Testing requirements
+# These packages are needed for running the test suite
+
+# Core testing dependencies (built-in to Python)
+# unittest - built-in
+# unittest.mock - built-in
+
+# Application dependencies for testing
+requests>=2.31.0
+Pillow>=10.2.0
+
+# Optional testing enhancements
+# pytest>=7.0.0  # Alternative test runner (not required)
+# coverage>=6.0   # Test coverage reporting (not required)
