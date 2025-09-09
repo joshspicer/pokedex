@@ -22,7 +22,7 @@ class PokedexApp:
         input_frame.grid(row=0, column=0, pady=5)
         
         # Create entry and buttons
-        ttk.Label(input_frame, text="Enter Pokémon number (1-1025):").grid(row=0, column=0, padx=5)
+        ttk.Label(input_frame, text="Enter Pokémon number (1-1026):").grid(row=0, column=0, padx=5)
         self.number_entry = ttk.Entry(input_frame, width=10)
         self.number_entry.grid(row=0, column=1, padx=5)
         ttk.Button(input_frame, text="Search", command=self.search_pokemon).grid(row=0, column=2, padx=5)
@@ -84,6 +84,13 @@ class PokedexApp:
         self.number_entry.bind('<Return>', lambda e: self.search_pokemon())
 
     def get_pokemon_data(self, number):
+        # Handle custom pokemon "josh"
+        if number == 1026:
+            return {
+                'name': 'Josh',
+                'gif_url': None  # No GIF for custom pokemon
+            }
+            
         try:
             # Get Pokemon details from PokeAPI
             response = requests.get(f"https://pokeapi.co/api/v2/pokemon/{number}", timeout=10)
@@ -98,6 +105,22 @@ class PokedexApp:
             return None
 
     def get_pokemon_image(self, number):
+        # Handle custom pokemon "josh"
+        if number == 1026:
+            try:
+                import os
+                josh_image_path = os.path.join(os.path.dirname(__file__), 'images', 'josh.png')
+                if os.path.exists(josh_image_path):
+                    image = Image.open(josh_image_path)
+                    return image
+                else:
+                    # Fallback: create a simple image if file doesn't exist
+                    image = Image.new('RGB', (400, 400), color='lightblue')
+                    return image
+            except Exception as e:
+                messagebox.showerror("Error", f"Failed to load josh image: {e}")
+                return None
+        
         # Format number to 3 digits with leading zeros
         formatted_num = str(number).zfill(3)
         url = f"https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/{formatted_num}.png"
@@ -176,8 +199,8 @@ class PokedexApp:
     def search_pokemon(self):
         try:
             number = int(self.number_entry.get())
-            if not 1 <= number <= 1025:
-                messagebox.showwarning("Invalid Input", "Number must be between 1 and 1025")
+            if not 1 <= number <= 1026:
+                messagebox.showwarning("Invalid Input", "Number must be between 1 and 1026")
                 return
             
             self.display_pokemon(number)
@@ -235,7 +258,7 @@ class PokedexApp:
     def next_pokemon(self):
         try:
             current = int(self.number_entry.get())
-            next_num = min(current + 1, 1025)
+            next_num = min(current + 1, 1026)
             self.display_pokemon(next_num)
         except ValueError:
             self.display_pokemon(1)
